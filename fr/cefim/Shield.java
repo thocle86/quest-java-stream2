@@ -1,5 +1,8 @@
+package fr.cefim;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Shield {
 
@@ -12,8 +15,13 @@ public class Shield {
         names.add("Leopold Fitz");
         names.add("Jemma Simmons");
 
-        // TODO 1 : map names to agents list
         List<Agent> agents = new ArrayList<>();
+        agents = names.stream()
+                .map(string -> {
+                    String[] result = string.split(" ");
+                    return new Agent(result[0], result[1]);
+                })
+                .collect(Collectors.toList());
 
         showAgents(agents);
     }
